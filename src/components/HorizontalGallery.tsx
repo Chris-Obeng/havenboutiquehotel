@@ -195,7 +195,7 @@ export default function HorizontalGallery() {
         <div
           ref={progressFillRef}
           className="h-full bg-[#C9A96E] origin-left"
-          style={{ scaleX: 0 }}
+            style={{ transform: "scaleX(0)", transformOrigin: "left" }}
         />
       </div>
 
