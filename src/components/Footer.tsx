@@ -32,6 +32,9 @@ export default function Footer() {
             <span className="font-light text-[12px] md:text-[13px] text-[#F5F0EB]/35 mb-7 font-sans">
               A private garden sanctuary in Ejisu.
             </span>
+            <span className="uppercase text-[9px] md:text-[10px] tracking-[0.4em] text-[#C9A96E]/70 mb-7 font-sans">
+              A Hidden Paradise
+            </span>
             <div className="w-[28px] h-[1px] bg-[#C9A96E]/40 mb-7" />
             <Link
               href="/contact"

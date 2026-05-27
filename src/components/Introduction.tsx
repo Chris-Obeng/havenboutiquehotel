@@ -156,9 +156,6 @@ export default function Introduction() {
               "Every corner of Haven whispers of a place shaped by the land, the
               culture, and the warmth of its people."
             </p>
-            <span className="uppercase text-[10px] md:text-[11px] tracking-[0.2em] text-[#1A1A18]/30 font-sans">
-              HAVEN BOUTIQUE HOTEL
-            </span>
           </div>
         </div>
       </div>

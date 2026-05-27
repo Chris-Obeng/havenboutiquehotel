@@ -20,11 +20,13 @@ export default function HomePage() {
       <main>
         <Hero />
 
-        {/* Small centered banner as requested */}
         <div className="py-8 text-center">
-          <h2 className="text-2xl font-semibold tracking-widest">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-widest">
             HAVEN BOUTIQUE HOTEL
           </h2>
+          <p className="mt-2 text-[10px] md:text-[11px] uppercase tracking-[0.4em] text-[#1A1A18]/45">
+            A Hidden Paradise
+          </p>
         </div>
 
         <Introduction />
@@ -32,13 +34,6 @@ export default function HomePage() {
         {/* Rooms sit directly below the intro / "Our Story" section */}
         <div id="rooms">
           <Rooms />
-
-          {/* Repeat banner after the section that follows the overview area */}
-          <div className="py-8 text-center">
-            <h2 className="text-2xl font-semibold tracking-widest">
-              HAVEN BOUTIQUE HOTEL
-            </h2>
-          </div>
         </div>
 
         {/* Gallery + Life at Haven horizontal scroll */}
