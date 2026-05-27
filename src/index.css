@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --haven-cream:  #F5F0EB;
+  --haven-green:  #0E2820;
+  --haven-text:   #1A1A18;
+  --haven-gold:   #C9A96E;
+  --haven-border: rgba(26, 26, 24, 0.12);
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-jost: 'Jost', sans-serif;
+
+  --background:           30 29% 93%;
+  --foreground:           60 4% 10%;
+  --primary:              30 29% 93%;
+  --primary-foreground:   60 4% 10%;
+  --secondary:            158 47% 12%;
+  --secondary-foreground: 30 29% 93%;
+  --muted:                30 15% 88%;
+  --muted-foreground:     60 4% 30%;
+  --accent:               36 47% 61%;
+  --accent-foreground:    60 4% 10%;
+  --border:               30 15% 85%;
+  --input:                30 15% 85%;
+  --ring:                 36 47% 61%;
+  --card:                 30 29% 93%;
+  --card-border:          30 15% 85%;
+  --popover:              30 29% 93%;
+  --popover-foreground:   60 4% 10%;
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --font-sans:  var(--font-jost);
+  --font-serif: var(--font-cormorant);
+}
+
+/* ── Global reset / base ──────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* No scroll-behavior: smooth — GSAP ScrollTrigger handles scroll */
+  -webkit-font-smoothing:  antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-jost);
+  background-color: var(--haven-cream);
+  color: var(--haven-text);
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Scrollbar hide utility ───────────────────────── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width:    none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Ping animation (location dot) ───────────────── */
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+.animate-ping {
+  animation: ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  LIQUID BUTTON                                      */
+/*                                                     */
+/*  The .haven-btn-fill span is a full inset child     */
+/*  that starts off-screen to the left (with a         */
+/*  slight skew so it appears to "pour in"). On group  */
+/*  hover it translates to x=0, skew=0 — the fill      */
+/*  sweeps across like a liquid wave.                  */
+/* ─────────────────────────────────────────────────── */
+
+.haven-btn-fill {
+  position:      absolute;
+  inset:         0;
+  border-radius: 9999px;
+  /* Start: fully off-screen to the left, slightly skewed */
+  transform:     translateX(-105%) skewX(10deg);
+  /* Liquid ease — fast in the middle, settles at end */
+  transition:    transform 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+  pointer-events: none;
+}
+
+.group:hover .haven-btn-fill,
+.group:focus-visible .haven-btn-fill {
+  transform: translateX(0%) skewX(0deg);
+}
+
+/* Slight opacity on active/press */
+.group:active .haven-btn-fill {
+  opacity: 0.88;
+}
+
+/* ── Liquid fill — bottom to top variant ─────────── */
+.haven-btn-fill-up {
+  position:       absolute;
+  inset:          0;
+  border-radius:  9999px;
+  /* Start: fully off-screen below, slight skewY */
+  transform:      translateY(108%) skewY(-4deg);
+  transition:     transform 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+  pointer-events: none;
+}
+
+.group:hover .haven-btn-fill-up,
+.group:focus-visible .haven-btn-fill-up {
+  transform: translateY(0%) skewY(0deg);
+}
+
+.group:active .haven-btn-fill-up {
+  opacity: 0.88;
+}
+
+/* ── Button label color cross-fade ───────────────── */
+/*  The label transitions right as the fill arrives.  */
+.haven-btn-label {
+  position:   relative;
+  z-index:    10;
+  transition: color 0.22s cubic-bezier(0.76, 0, 0.24, 1) 0.18s;
+}
+
+/* ── Focus outline for accessibility ─────────────── */
+.haven-btn:focus-visible {
+  outline:        2px solid var(--haven-gold);
+  outline-offset: 3px;
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  CUSTOM CURSOR                                       */
+/*                                                     */
+/*  Body gets .has-custom-cursor when the CustomCursor  */
+/*  component detects a fine-pointer (mouse) device.   */
+/*  We hide the native cursor only in that case —      */
+/*  touch/mobile devices keep the default cursor.      */
+/* ─────────────────────────────────────────────────── */
+
+body.has-custom-cursor,
+body.has-custom-cursor * {
+  cursor: none !important;
+}

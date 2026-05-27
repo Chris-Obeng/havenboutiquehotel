@@ -1,0 +1,256 @@
+Build a premium, mobile-first homepage for "Haven Boutique Hotel" — a luxury boutique 
+hotel in Kumasi, Ghana's Ashanti Region. The design must match the editorial luxury 
+aesthetic of hba.com exactly: warm cream/off-white background, deep forest green 
+accent sections, large serif headings, minimal navigation, and cinematic full-bleed 
+imagery with parallax scroll effects.
+
+---
+
+## TECH STACK
+- Next.js App Router + TypeScript
+- Tailwind CSS for layout/spacing
+- GSAP (with ScrollTrigger) for all scroll animations and parallax
+- Framer Motion for micro-interactions (hover states, button transitions)
+- next/image for optimized images
+- next/font for Google Fonts
+
+---
+
+## TYPOGRAPHY (critical — must match exactly)
+- Headings: "Cormorant Garamond" from Google Fonts — weights 300, 400, 500
+  (font-display: swap, italic variant for pull quotes)
+- Body + Labels: "Jost" from Google Fonts — weights 300, 400
+- Section labels (like "OVERVIEW", "EXPERIENCES"): Jost, font-size 11px, 
+  letter-spacing 0.25em, ALL CAPS, font-weight 400
+- Large hero/section headings: Cormorant Garamond, font-size clamp(48px, 8vw, 96px), 
+  font-weight 300, line-height 1.0
+- Body text: Jost 300, font-size 16px-18px, line-height 1.75
+
+---
+
+## COLOR PALETTE (exact values)
+- Background primary: #F5F0EB (warm cream — used for 90% of page)
+- Background dark: #0E2820 (deep forest green — footer + contrast sections)
+- Text primary: #1A1A18 (near-black)
+- Text on dark: #F5F0EB (cream on green sections)
+- Accent gold: #C9A96E (used sparingly for thin lines/dividers only)
+- Border/divider: rgba(26, 26, 24, 0.12)
+
+---
+
+## NAVIGATION
+- Fixed top, full-width, transparent over hero, transitions to cream background on scroll
+- Left: "HAVEN" wordmark in Cormorant Garamond, font-size 22px, letter-spacing 0.15em
+- Right: "MENU" text in Jost 11px + magnifying glass icon (circle outline, 18px)
+- No links visible by default — clicking MENU opens a fullscreen overlay nav 
+  (dark green #0E2820 background) with large Cormorant Garamond links:
+  Rooms & Suites / Dining / Experiences / About / Gallery / Contact
+- Mobile: same layout, hamburger converts to animated X on open
+
+---
+
+## SECTION 1: HERO
+- Full viewport height (100svh), full-bleed background image
+- Use a beautiful placeholder via: https://images.unsplash.com/photo-1582719478250-c89cae4dc85b 
+  (or similar luxury hotel/nature image — use next/image with priority)
+- GSAP parallax: image moves at 0.4x scroll speed (translateY tied to scrollY via ScrollTrigger)
+- Centered text overlay with subtle dark gradient (bottom 60% only):
+  - Small label: "KUMASI, GHANA · ASHANTI REGION" in Jost caps
+  - Main headline: "A Sanctuary In The Heart of Ashanti" in Cormorant Garamond, 
+    white, very large (clamp 52px to 96px)
+  - Below: thin 1px gold horizontal line, 80px wide, centered
+  - Subtitle: "13 elegantly appointed rooms. Lush gardens. Authentic Ghanaian hospitality."
+    in Jost 300, white, opacity 0.85
+  - CTA: pill-shaped outlined button — 1px white border, transparent fill, 
+    "EXPLORE HAVEN" in Jost 11px caps, letter-spacing 0.2em, hover: fills white, 
+    text turns dark — Framer Motion whileHover scale 1.02
+- Scroll indicator: thin animated line pulsing downward at bottom center
+
+---
+
+## SECTION 2: INTRODUCTION (matches HBA "Who we are" section)
+- Background: #F5F0EB
+- Left column (40%): Large Cormorant heading "Where Ghana's Culture Meets Quiet Luxury" — 
+  font-size clamp(36px, 5vw, 64px), font-weight 300
+- Right column (60%): 
+  - Top label: "OVERVIEW" in Jost 11px caps
+  - Body text in Jost 300, 17px: 
+    "Nestled in Ejisu — just 15 kilometres from Kumasi's vibrant city centre — Haven 
+    offers a rare retreat where the warmth of Ashanti culture and the comfort of 
+    boutique hospitality converge. Wake to garden views, dine on authentic West African 
+    cuisine, and discover the storied heritage of the Ashanti Kingdom at your doorstep."
+  - Below: thin divider line + pill outlined button "OUR STORY" in same style as hero CTA 
+    but in dark color
+- Left side: large editorial image (portrait orientation, about 480px wide) 
+  placed slightly below the text start, with GSAP ScrollTrigger fade-up animation 
+  (y: 60 → 0, opacity: 0 → 1, duration 1.2s, ease "power2.out")
+- Image caption below: small Jost 11px caps, "HAVEN GARDEN TERRACE · EJISU"
+
+---
+
+## SECTION 3: STAGGERED IMAGE GALLERY (matches HBA portfolio grid)
+- Background: #F5F0EB
+- Asymmetric two-column offset grid: 
+  - Left image: starts at top, taller (portrait), ~45% width
+  - Right image: starts 120px lower than left, landscape, ~50% width
+  - Third image: full width, crops to 55vh height — bleeds edge to edge
+- Each image: GSAP parallax at different speeds (left: 0.3x, right: 0.5x, full: 0.2x)
+  — creates beautiful depth as user scrolls
+- Below each image: Jost 11px caps label like "PRESIDENTIAL SUITE · HAVEN" or 
+  "THE GARDEN RESTAURANT"
+- Between images: generous whitespace (min 80px vertical gaps)
+- Unsplash placeholder images: luxury hotel rooms, pool, garden terrace
+
+---
+
+## SECTION 4: ROOMS & SUITES
+- Background: #F5F0EB
+- Section label "ACCOMMODATION" top left
+- Large heading "Rooms Designed for Rest" — Cormorant Garamond
+- 3 room cards in a horizontal scroll on mobile / 3-column grid on desktop:
+  Each card:
+  - Full-width image (4:3 ratio), GSAP scale 1.0 → 1.03 on hover
+  - Below image: room name in Cormorant Garamond 22px
+  - Detail in Jost 11px caps: "FROM $120 / NIGHT · 38 SQM"
+  - One-line description in Jost 300 14px
+  - Arrow link "VIEW ROOM →" in Jost 11px caps
+- Room types: Garden Room / Ashanti Suite / Haven Retreat
+
+---
+
+## SECTION 5: DARK CONTRAST SECTION — EXPERIENCES
+- Background: #0E2820 (deep forest green)
+- Text: cream #F5F0EB
+- Section label "EXPERIENCES" in Jost caps, opacity 0.6
+- Large heading "Discover the Soul of Kumasi" — Cormorant Garamond, cream, 
+  font-size clamp(40px, 6vw, 80px)
+- Body: "From the golden halls of Manhyia Palace Museum to the vivid tapestry 
+  of Kejetia Market — West Africa's largest open-air bazaar — Haven places 
+  you at the heart of Ashanti heritage."
+- 4 experience tiles in a 2×2 grid (stacks to 1-col on mobile):
+  Each tile: icon (thin line, cream), title in Cormorant italic, 
+  short description in Jost 300 small
+  Tiles: Cultural Heritage Tours / The Garden Restaurant / 
+         Ashanti Kente Experiences / Conference & Events
+- GSAP: entire section fades + slides up 40px as it enters viewport
+- CTA pill button (1px cream border): "PLAN YOUR STAY"
+
+---
+
+## SECTION 6: PULL QUOTE / EDITORIAL BREAK
+- Background: #F5F0EB  
+- Centered layout, max-width 700px, generous vertical padding (120px top+bottom)
+- Thin gold 1px horizontal line, 60px, centered top
+- Quote in Cormorant Garamond italic, font-size clamp(28px, 4vw, 52px), 
+  font-weight 300, line-height 1.3:
+  "A hotel that feels less like an accommodation and more like a personal 
+  invitation into the Ashanti way of life."
+- Attribution below: "— Booking.com Guest · ★★★★★" in Jost 11px caps, 
+  letter-spacing 0.2em, opacity 0.6
+- GSAP: text reveals word by word on scroll (stagger 0.05s)
+
+---
+
+## SECTION 7: DINING
+- Split layout: 55% image left, 45% text right (reverses on mobile to image top)
+- Image: full-height, parallax 0.4x speed with ScrollTrigger
+- Text side (cream bg):
+  - Label: "CULINARY"
+  - Heading: "The Garden Restaurant" in Cormorant Garamond
+  - Body: "Our on-site restaurant celebrates the best of West African cuisine 
+    alongside European influences — from freshly prepared Fufu and local 
+    Ghanaian stews to continental breakfast spreads served in the open garden."
+  - Pill button: "VIEW MENU"
+  - Below: three small stat-style callouts in a row:
+    "BREAKFAST · LUNCH · DINNER" / "INDOOR & GARDEN SEATING" / "BAR & LOUNGE"
+    each in Jost 11px caps with a thin top border line
+
+---
+
+## SECTION 8: LOCATION
+- Background: #F5F0EB
+- Label: "LOCATION"
+- Heading: "Rooted in Kumasi's Cultural Heart"
+- Body: short description of Ejisu location + proximity to Manhyia Palace, 
+  KNUST Botanical Garden, Kejetia Market
+- Below: 4 distance callouts in a row:
+  "CITY CENTRE · 15 KM" / "KUMASI AIRPORT · 17 KM" / 
+  "KNUST GARDENS · 11 KM" / "MANHYIA PALACE · 18 KM"
+  — each in Jost 11px caps, separated by thin vertical lines
+- Map embed (static image) or stylized location card with coordinates
+
+---
+
+## SECTION 9: BOOKING CTA
+- Background: #0E2820 (deep forest green)
+- Full-width, generous padding (160px top+bottom)
+- Large centered heading in Cormorant Garamond, cream: 
+  "Begin Your Ashanti Story"
+- Subtitle: "Check availability and reserve your stay at Haven"
+- Two pill buttons side by side (stacked on mobile):
+  "CHECK AVAILABILITY" (filled cream, dark text) + "GET IN TOUCH" (outlined cream)
+- Thin gold line decoration above heading
+
+---
+
+## FOOTER
+- Background: #0E2820
+- 4-column layout (stacks to 2-col on mobile, then 1-col on small screens):
+  Col 1: "HAVEN" wordmark + "Boutique Hotel · Kumasi, Ghana" + 
+          short tagline in Jost 300 small
+  Col 2: Quick Links in Jost 11px caps
+  Col 3: Contact — address, email, phone in Jost 300 small
+  Col 4: Social icons (Instagram, Facebook) + "Book Direct" CTA
+- Bottom bar: thin divider + copyright in Jost 11px, opacity 0.4
+- All footer text: cream #F5F0EB
+
+---
+
+## ANIMATIONS (GSAP — implement all of these)
+1. Hero parallax: image translateY at 40% scroll speed via ScrollTrigger
+2. Section image fade-up: every editorial image fades from opacity:0 + y:60 → normal
+   on scroll entry, stagger 0.15s between multiple images
+3. Staggered gallery parallax: left/right images move at different speeds (0.3x vs 0.5x)
+4. Text reveal: section headings clip-reveal from bottom using GSAP + clip-path animation
+5. Dark sections: fade + slide-up 40px on scroll entry
+6. Quote word-by-word reveal: split text, stagger each word 0.04s opacity reveal
+7. Nav background transition: transparent → cream smooth transition on scroll past 80px
+8. Room cards: hover scale 1.03 on image, Framer Motion whileHover
+9. CTA buttons: Framer Motion spring scale on hover + subtle border glow
+
+---
+
+## MOBILE-FIRST RESPONSIVE RULES
+- Base styles written for 375px (iPhone SE)
+- All font sizes use clamp() for fluid scaling
+- Hero text: max 3 lines on mobile, reduce letter-spacing
+- Two-column layouts: stack to single column below 768px
+- Horizontal room card scroll on mobile (snap scroll, -webkit-overflow-scrolling: touch)
+- Navigation overlay: full screen on mobile with large tap targets (min 48px)
+- Images: aspect-ratio locked, never overflow on small screens
+- Padding: 24px horizontal on mobile, 80px on desktop sections
+- Footer: 1-column stack on mobile
+
+---
+
+## IMAGE PLACEHOLDERS
+Use next/image with these Unsplash URLs (or similar luxury hotel images):
+- Hero: https://images.unsplash.com/photo-1566073771259-6a8506099945 (hotel pool/exterior)
+- Introduction: https://images.unsplash.com/photo-1582719478250-c89cae4dc85b (hotel room)
+- Gallery 1: https://images.unsplash.com/photo-1631049307264-da0ec9d70304 (suite)
+- Gallery 2: https://images.unsplash.com/photo-1571896349842-33c89424de2d (bathroom)
+- Gallery 3: https://images.unsplash.com/photo-1520250497591-112f2f40a3f4 (pool/garden)
+- Dining: https://images.unsplash.com/photo-1414235077428-338989a2e8c0 (restaurant)
+Add ?auto=format&fit=crop&w=1200&q=80 to all Unsplash URLs
+
+---
+
+## CODE QUALITY REQUIREMENTS
+- All components in /components folder with TypeScript interfaces
+- GSAP initialized in useEffect with proper cleanup (ScrollTrigger.kill())
+- next/image with proper width/height and sizes prop for responsive
+- No layout shift: reserve image dimensions with aspect-ratio CSS
+- Semantic HTML: <section>, <header>, <nav>, <main>, <footer>, <article>
+- aria-labels on all icon buttons and navigation
+- Smooth scrolling: html { scroll-behavior: smooth }
+- CSS custom properties for all brand colors defined in :root
