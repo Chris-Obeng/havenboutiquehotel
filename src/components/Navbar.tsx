@@ -170,7 +170,7 @@ export default function Navbar() {
           </Link>
 
           {/* ── Right: Enquire pill ───────────────────────────── */}
-          <div className="flex items-center justify-end">
+          <div className="flex items-center justify-end -mr-1 md:mr-0">
             <Link
               href="/contact"
               className="group relative overflow-hidden inline-flex items-center gap-2 min-h-[36px] md:min-h-[38px] px-5 md:px-6 rounded-full border border-current/30 hover:border-current/0 transition-[border-color] duration-500 font-sans"
