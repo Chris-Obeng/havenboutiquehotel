@@ -101,6 +101,10 @@ img {
   pointer-events: none;
 }
 
+.haven-btn.is-pressed .haven-btn-fill {
+  transform: translateX(0%) skewX(0deg);
+}
+
 
 @media (hover: hover) and (pointer: fine) {
   .group:hover .haven-btn-fill,
@@ -128,6 +132,10 @@ img {
   transform:      translateY(108%) skewY(-4deg);
   transition:     transform 0.55s cubic-bezier(0.76, 0, 0.24, 1);
   pointer-events: none;
+}
+
+.haven-btn.is-pressed .haven-btn-fill-up {
+  transform: translateY(0%) skewY(0deg);
 }
 
 .group:active .haven-btn-fill-up {

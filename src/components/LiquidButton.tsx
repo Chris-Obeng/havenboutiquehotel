@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 
@@ -15,15 +15,15 @@ import { motion } from "framer-motion";
  *   "ghost-light" dark backgrounds, secondary CTA
  */
 
-type Variant       = "dark" | "light" | "ghost-light";
+type Variant = "dark" | "light" | "ghost-light";
 type FillDirection = "left" | "bottom";
 
 interface LiquidButtonProps {
-  href:           string;
-  children:       React.ReactNode;
-  variant?:       Variant;
+  href: string;
+  children: React.ReactNode;
+  variant?: Variant;
   fillDirection?: FillDirection;
-  className?:     string;
+  className?: string;
   "data-testid"?: string;
 }
 
@@ -32,21 +32,21 @@ const config: Record<
   { border: string; text: string; fill: string; hoverText: string }
 > = {
   dark: {
-    border:    "border-[#1A1A18]/60",
-    text:      "text-[#1A1A18]",
-    fill:      "bg-[#1A1A18]",
+    border: "border-[#1A1A18]/60",
+    text: "text-[#1A1A18]",
+    fill: "bg-[#1A1A18]",
     hoverText: "group-hover:text-[#F5F0EB]",
   },
   light: {
-    border:    "border-[#F5F0EB]/65",
-    text:      "text-[#F5F0EB]",
-    fill:      "bg-[#F5F0EB]",
+    border: "border-[#F5F0EB]/65",
+    text: "text-[#F5F0EB]",
+    fill: "bg-[#F5F0EB]",
     hoverText: "group-hover:text-[#0D1F17]",
   },
   "ghost-light": {
-    border:    "border-[#F5F0EB]/30",
-    text:      "text-[#F5F0EB]",
-    fill:      "bg-[#F5F0EB]",
+    border: "border-[#F5F0EB]/30",
+    text: "text-[#F5F0EB]",
+    fill: "bg-[#F5F0EB]",
     hoverText: "group-hover:text-[#0D1F17]",
   },
 };
@@ -54,24 +54,29 @@ const config: Record<
 export default function LiquidButton({
   href,
   children,
-  variant       = "dark",
+  variant = "dark",
   fillDirection = "left",
-  className     = "",
+  className = "",
   "data-testid": testId,
 }: LiquidButtonProps) {
-  const v         = config[variant];
-  const fillClass = fillDirection === "bottom" ? "haven-btn-fill-up" : "haven-btn-fill";
+  const v = config[variant];
+  const fillClass =
+    fillDirection === "bottom" ? "haven-btn-fill-up" : "haven-btn-fill";
+  const [isPressed, setIsPressed] = useState(false);
+
+  const releasePress = () => setIsPressed(false);
 
   return (
     <motion.div
       className="inline-block"
-      whileTap={{ scale: 0.95, y: 1 }}
-      transition={{ type: "spring", stiffness: 700, damping: 35 }}
+      whileTap={{ scale: 0.92, y: 2.5 }}
+      transition={{ type: "spring", stiffness: 850, damping: 28 }}
     >
       <Link
         href={href}
         className={`
           haven-btn group
+          ${isPressed ? "is-pressed" : ""}
           relative inline-flex items-center justify-center
           overflow-hidden rounded-full border
           ${v.border} ${v.text}
@@ -79,12 +84,13 @@ export default function LiquidButton({
           min-h-[44px]
           ${className}
         `}
+        onPointerDown={() => setIsPressed(true)}
+        onPointerUp={releasePress}
+        onPointerCancel={releasePress}
+        onPointerLeave={releasePress}
         data-testid={testId}
       >
-        <span
-          className={`${fillClass} ${v.fill}`}
-          aria-hidden="true"
-        />
+        <span className={`${fillClass} ${v.fill}`} aria-hidden="true" />
         <span
           className={`
             haven-btn-label
